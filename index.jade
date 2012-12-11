@@ -1,0 +1,36 @@
+<html class="ie8" lang="en">
+//if IE 9
+    <html class="ie9" lang="en">
+//[if (gt IE 9)|!(IE)]><!
+html(lang='en')
+//<![endif]
+head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=0.5')
+    title= 'jonsherrard.com'
+    link(rel='icon', href='www/img/favicon.ico')
+    link(rel='stylesheet', href='www/css/bootstrap.css')
+    link(rel='stylesheet', href='www/css/style.css')
+    script(src='www/js/lib/modernizr.min.js')
+
+    script
+        (function(g,b,d){var c=b.head||b.getElementsByTagName('head'),D='readyState',E='onreadystatechange',F='DOMContentLoaded',G='addEventListener',H=setTimeout;;
+            function f(){
+                $LAB
+                    .script('//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js')
+                    .script('www/js/lib/underscore.min.js')
+                    .script('//google-analytics.com/ga.js')
+                    .script('www/js/lib/handlebars.runtime.min.js').wait()
+                    .script('www/js/templates.js')              
+                    .script('www/js/lib/backbone.min.js').wait()
+                    .script('www/js/client.js').wait(function(){
+                        new APP.v.App;
+                    });
+            }
+        H(function(){if('item'in c){if(!c[0]){H(arguments.callee,25);return}c=c[0]}var a=b.createElement('script'),e=false;a.onload=a[E]=function(){if((a[D]&&a[D]!=='complete'&&a[D]!=='loaded')||e){return false}a.onload=a[E]=null;e=true;f()};
+        a.src='www/js/lib/LAB.min.js';
+        c.insertBefore(a,c.firstChild)},0);if(b[D]==null&&b[G]){b[D]='loading';b[G](F,d=function(){b.removeEventListener(F,d,false);b[D]='complete'},false)}})(this,document);      
+
+body
+    #app
+        #screen

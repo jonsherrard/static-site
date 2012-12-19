@@ -28,7 +28,11 @@ task 'build', 'build app from src files', (options) ->
 task 'build:stylus', 'build style.css from src/styl', ->
 	exec 'stylus -c -u nib -o www/css/ src/client/styl/style.styl', (err, stdout, stderr) ->
 		err && throw err
-		log 'Build Stylus OK!', 'green'
+		exec 'cat www/css/reset.css www/css/bootstrap.css www/css/animate.min.css www/css/style.css > www/css/c.css', (err, stdout, stderr) ->
+			err && throw err
+			exec 'cleancss -o www/css/c.min.css www/css/c.css', (err, stdout, stderr) ->
+				err && throw err
+				log 'Build Stylus OK!', 'green'
 
 task 'build:jade', 'build src/html from src/jade', ->
 	exec 'jade -O src/html/ src/client/jade/*', (err, stdout, stderr) ->

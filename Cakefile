@@ -1,7 +1,6 @@
 remote = 'ec2:/srv/www/cloud.chaffin.ch/chaf'
 
 fs 					= require 'fs'
-{parser, uglify} 	= require 'uglify-js'
 {exec} 				= require 'child_process'
 
 ansi =
@@ -88,16 +87,6 @@ task 'build:coffee', 'build src/client.js file from source files', (options) ->
 				fs.unlink 'src/client/coffee/client.coffee', (err) ->
 					err && throw err
 					log 'Build Coffee OK!', 'green'
-					invoke 'uglify'
-
-task 'uglify', 'run src/client.js through Uglify', (options) ->
-	fs.readFile 'www/js/client.js', 'utf8', (err, contents) ->
-		err && throw err
-		# code = uglify.gen_code uglify.ast_squeeze uglify.ast_mangle parser.parse contents
-		code = contents
-		fs.writeFile 'www/js/client.min.js', code, 'utf8', (err) ->
-			err && throw err
-			log 'Uglify OK!', 'green'
 
 task 'ship', 'commit to git and push to remote server', (options) ->
 	message = options.message || 'minor change'
